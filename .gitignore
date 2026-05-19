@@ -1,0 +1,4 @@
+auth/config/.env
+order/config/.env
+payment/config/.env
+notification/config/.env
