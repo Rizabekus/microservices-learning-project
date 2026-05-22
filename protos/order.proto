@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package order;
+
+option go_package = "github.com/Rizabekus/microservices-learning-project/protos/order";
+
+service OrderService {
+  rpc GetOrderInternal(GetOrderRequest) returns (OrderResponse);
+}
+
+message GetOrderRequest {
+  string order_id = 1;
+}
+
+message OrderResponse {
+  string id = 1;
+  string user_id = 2;
+  int64 amount = 3;
+  string currency = 4;
+  string status = 5;
+  string created_at = 6;
+}

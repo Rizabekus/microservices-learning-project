@@ -47,7 +47,8 @@ func New(repository Repository, passwordHasher PasswordHasher, tokenManager Toke
 func (s *service) Register(ctx context.Context, firstName string, lastName string, email string, password string, mobileNumber string) (string, string, error) {
 	userExists, err := s.Repository.GetUserByEmail(ctx, email)
 
-	if err != nil {
+	if err != nil && !errors.Is(err, sql.ErrNoRows) {
+
 		logger.Log.Error("failed to check if user exists", "error", err)
 		return "", "", err
 	}

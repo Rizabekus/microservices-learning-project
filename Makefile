@@ -1,12 +1,15 @@
-DB_URL=postgres://postgres:password@localhost:5432/databaseName
-MIGRATIONS_DIR=auth/migrations
+DB_URL=postgres://postgres:password@localhost:5432/dbname
+
+SERVICE?=order
+
+MIGRATIONS_DIR=$(SERVICE)/migrations
 
 GOOSE=goose -dir $(MIGRATIONS_DIR) postgres $(DB_URL)
 
 .PHONY: run migrate-up migrate-down migrate-status migrate-create migrate-reset
 
 run:
-	go run ./auth/cmd
+	go run ./$(SERVICE)/cmd
 
 migrate-up:
 	$(GOOSE) up
